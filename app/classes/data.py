@@ -35,10 +35,11 @@ class User(UserMixin, Document):
     adult_lname = StringField()
     adult_email = StringField()
     consent = BooleanField(default=False)
-
+    role = StringField()
     meta = {
         'ordering': ['lname','fname']
     }
+    
 
 class Sleep(Document):
     sleeper = ReferenceField('User',reverse_delete_rule=CASCADE)
@@ -97,3 +98,4 @@ class Clinic(Document):
     meta = {
         'ordering': ['-createdate']
     }
+    
