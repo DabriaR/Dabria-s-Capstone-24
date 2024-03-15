@@ -39,6 +39,14 @@ class BlogForm(FlaskForm):
     tag = StringField('Tag', validators=[DataRequired()])
     submit = SubmitField('Blog')
 
+class FilmForm(FlaskForm):
+    filmname = StringField('Film Name', validators=[DataRequired()])
+    director = StringField('Director', validators=[DataRequired()])
+    director_race = SelectField('Race',choices=[("Black or Africa American","Black or African American"),("White","White"),("Asian","Asian"),("Native Hawaiian or Pacific Islander","Native Hawaiian or Pacific Islander"),("American Indian or Alaska Native","American Indian or Alaska Native")])
+    genre = SelectField('Genre',choices=[("Comedy","Comedy"),("Action","Action"),("Drama","Drama"),("Horror","Horror")])
+    release = IntegerField("Release Date", validators=[NumberRange(min=1900,max=2024)])
+    submit = SubmitField('Submit')
+
 class CommentForm(FlaskForm):
     content = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Comment')
