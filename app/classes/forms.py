@@ -13,9 +13,11 @@ class ProfileForm(FlaskForm):
     fname = StringField('First Name', validators=[DataRequired()])
     lname = StringField('Last Name', validators=[DataRequired()]) 
     image = FileField("Image") 
-    submit = SubmitField('Post')
-    role = SelectField('Role',choices=[("Teacher","Teacher"),("Student","Student")])
     age = IntegerField('Age', validators=[NumberRange(min=0,max=130, message='Age')])
+    pronouns = StringField('Pronouns', validators=[DataRequired()])
+    bio = StringField('Bio', validators=[DataRequired()])
+    submit = SubmitField('Post')
+
 class ConsentForm(FlaskForm):
     adult_fname = StringField('First Name',validators=[DataRequired()])
     adult_lname = StringField('Last Name',validators=[DataRequired()])

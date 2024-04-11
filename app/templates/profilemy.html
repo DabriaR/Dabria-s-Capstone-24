@@ -21,9 +21,10 @@
         {% else %}
             Google User Name: {{current_user.gname}} <br>
         {% endif %}
-        Email: {{current_user.email}} <br>
-        Role: {{current_user.role}} <br>
-        Age: {{current_user.age}}<br>
+        Pronouns: {{current_user.bio}}<br>
+        <!--display bio -->
+        {{current_user.bio}}<br>
+
         <hr>
         <a href="/consent">
             <img width="40" src="/static/edit.png">
