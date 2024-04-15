@@ -38,6 +38,8 @@ class User(UserMixin, Document):
     # role = StringField()
     # age = IntField()
     bio = StringField()
+    watchlist = IntField()
+    moviesWatched = IntField()
     meta = {
         'ordering': ['lname','fname']
     }

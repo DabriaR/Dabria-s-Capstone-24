@@ -13,6 +13,8 @@ class ProfileForm(FlaskForm):
     fname = StringField('First Name', validators=[DataRequired()])
     lname = StringField('Last Name', validators=[DataRequired()]) 
     image = FileField("Image") 
+    # watchlist = IntegerField('Watchlist', validators=[DataRequired()])
+    # moviesWatched = IntegerField('Movieswatched', validators=[DataRequired()])
     submit = SubmitField('Post')
     # role = SelectField('Role',choices=[("Teacher","Teacher"),("Student","Student")])
     # age = IntegerField('Age', validators=[NumberRange(min=0,max=130, message='Age')])
