@@ -35,8 +35,8 @@ class User(UserMixin, Document):
     adult_lname = StringField()
     adult_email = StringField()
     consent = BooleanField(default=False)
-    role = StringField()
-    age = IntField()
+    # role = StringField()
+    # age = IntField()
     bio = StringField()
     meta = {
         'ordering': ['lname','fname']
@@ -72,9 +72,9 @@ class Film(Document):
     author = ReferenceField('User',reverse_delete_rule=CASCADE) 
     filmname = StringField()
     director = StringField()
-    director_race = StringField()
     genre = StringField()
     release = IntField()
+    poster = FileField()
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
 

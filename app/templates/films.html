@@ -43,6 +43,13 @@
                 {{film.author.fname}} {{film.author.lname}}
             </div>
             <div class="col">
+                {% if film.poster %}
+                    <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(film.image.read())}}"> <br>
+                    {% else %}
+                    <img class="img-thumbnail" width = "100" src="/static/bdog.png">
+                {% endif %} 
+            </div>
+            <div class="col">
                 {% if loop.index == 1 %}
                     <h3 class="display-5">Film Name</h3>
                 {% endif %}
@@ -53,12 +60,6 @@
                     <h3 class="display-5">Director</h3>
                 {% endif %}
                 {{film.director}}
-            </div>
-            <div class="col">
-                {% if loop.index == 1 %}
-                    <h3 class="display-5">Director Race</h3>
-                {% endif %}
-                {{film.director_race}}
             </div>
             <div class="col">
                 {% if loop.index == 1 %}

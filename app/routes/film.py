@@ -25,7 +25,6 @@ def filmNew():
           
             filmname = form.filmname.data,
             director = form.director.data,
-            director_race = form.director_race.data,
             genre = form.genre.data,
             release = form.release.data,
             author = current_user.id,
@@ -80,20 +79,26 @@ def filmEdit(filmID):
         editFilm.update(
             filmname = form.filmname.data,
             director = form.director.data,
-            director_race = form.director_race.data,
             genre = form.genre.data,
             release = form.release.data,
+            poster = form.poster.data,
             modify_date = dt.datetime.utcnow
         )
-        
+        if form.poster.data:
+            if editFilm.poster:
+                editFilm.poster.delete()
+            editFilm.poster.put(form.poster.data, content_type = 'image/jpeg')
+            # This saves all the updates
+        editFilm.save()
+
         return redirect(url_for('film',filmID=filmID))
 
 
     form.filmname.data = editFilm.filmname
     form.director.data = editFilm.director
-    form.director_race.data = editFilm.director_race
     form.genre.data = editFilm.genre
     form.release.data = editFilm.release
+    form.poster.data = editFilm.poster
 
     return render_template('filmform.html',form=form)
 

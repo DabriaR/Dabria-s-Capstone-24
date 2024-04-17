@@ -13,11 +13,10 @@ class ProfileForm(FlaskForm):
     fname = StringField('First Name', validators=[DataRequired()])
     lname = StringField('Last Name', validators=[DataRequired()]) 
     image = FileField("Image") 
-    age = IntegerField('Age', validators=[NumberRange(min=0,max=130, message='Age')])
-    pronouns = StringField('Pronouns', validators=[DataRequired()])
-    bio = StringField('Bio', validators=[DataRequired()])
     submit = SubmitField('Post')
-
+    # role = SelectField('Role',choices=[("Teacher","Teacher"),("Student","Student")])
+    # age = IntegerField('Age', validators=[NumberRange(min=0,max=130, message='Age')])
+    bio = TextAreaField('Bio', validators=[DataRequired()])
 class ConsentForm(FlaskForm):
     adult_fname = StringField('First Name',validators=[DataRequired()])
     adult_lname = StringField('Last Name',validators=[DataRequired()])
@@ -44,9 +43,9 @@ class BlogForm(FlaskForm):
 class FilmForm(FlaskForm):
     filmname = StringField('Film Name', validators=[DataRequired()])
     director = StringField('Director', validators=[DataRequired()])
-    director_race = SelectField('Race',choices=[("Black or Africa American","Black or African American"),("White","White"),("Asian","Asian"),("Native Hawaiian or Pacific Islander","Native Hawaiian or Pacific Islander"),("American Indian or Alaska Native","American Indian or Alaska Native")])
     genre = SelectField('Genre',choices=[("Comedy","Comedy"),("Action","Action"),("Drama","Drama"),("Horror","Horror")])
     release = IntegerField("Release Date", validators=[NumberRange(min=1900,max=2024)])
+    poster = FileField("Poster") 
     submit = SubmitField('Submit')
 
 class CommentForm(FlaskForm):

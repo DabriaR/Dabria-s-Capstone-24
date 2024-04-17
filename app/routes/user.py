@@ -33,8 +33,7 @@ def profileEdit():
         currUser.update(
             lname = form.lname.data,
             fname = form.fname.data,
-            age = form.age.data,
-            pronouns = form.pronouns.data,
+           
             bio = form.bio.data
         )
         # This updates the profile image
@@ -51,9 +50,8 @@ def profileEdit():
     # then sends the user to the page with the edit profile form
     form.fname.data = current_user.fname
     form.lname.data = current_user.lname
-    form.age.data = current_user.age
-    form.pronouns.data = form.pronouns.data
-    form.bio.data = form.bio.data
+    
+    form.bio.data = current_user.bio
     return render_template('profileform.html', form=form)
 
 
