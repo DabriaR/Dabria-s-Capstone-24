@@ -14,7 +14,7 @@
                 {% if current_user.poster %}
                     <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(current_user.image.read())}}"> <br>
                 {% else %}
-                    <img class="img-thumbnail" width = "100" src="/static/bdog.png">
+                    <img class="img-thumbnail" width = "200" src="/static/la la land.jpg">
                 {% endif %} <br>
                 {{ form.poster() }}<br>
                 {% for error in form.poster.errors %}
