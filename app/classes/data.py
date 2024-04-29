@@ -30,14 +30,15 @@ class User(UserMixin, Document):
     lname = StringField()
     email = EmailField()
     image = FileField()
-    prononuns = StringField()
+    pronouns = StringField()
     adult_fname = StringField()
     adult_lname = StringField()
     adult_email = StringField()
     consent = BooleanField(default=False)
-    # role = StringField()
-    # age = IntField()
+    age = IntField()
     bio = StringField()
+    watchlist = IntField()
+    moviesWatched = IntField()
     meta = {
         'ordering': ['lname','fname']
     }

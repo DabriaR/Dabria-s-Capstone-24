@@ -14,7 +14,7 @@
         {% if current_user.image %}
             <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(current_user.image.read())}}"> <br>
         {% else %}
-            <img class="img-thumbnail" width = "100" src="/static/bdog.png">
+            <img class="img-thumbnail" height = "100" src="/static/plain_user.png">
         {% endif %} 
     </div>
     <div class="col display-5">
@@ -23,8 +23,30 @@
         {% else %}
             Google User Name: {{current_user.gname}} <br>
         {% endif %}
-        Email: {{current_user.email}} <br>
-        Bio: {{current_user.bio}}
+        Pronouns: {{current_user.pronouns}}<br>
+        {{current_user.moviesWatched}} films <br>
+        {{current_user.watchlist}} films to watch <br>
+ 
+
+        <br>
+        {{current_user.moviesLogged}} Movies Logged<br>
+        <div class="container text-center">
+            <div class="row">
+              <div class="col">
+                <div class="d-inline p-2 bg-dark text-white">image goes here</div>
+              </div>
+              <div class="col">
+                <div class="d-inline p-2 bg-dark text-white">image goes here</div>
+              </div>
+              <div class="col">
+                <div class="d-inline p-2 bg-dark text-white">image goes here</div>
+              </div>
+              <div class="col">
+                <div class="d-inline p-2 bg-dark text-white">image goes here</div>
+              </div>
+            </div>
+          </div>
+
         <hr>
         
     </div>

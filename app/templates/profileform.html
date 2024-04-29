@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <h1>Register</h1>
+    <h1>Edit Profile</h1>
     <!--enctype is needed to upload files -->
     <form action="" method="post" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
@@ -26,7 +26,7 @@
             {% if current_user.image %}
                 <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(current_user.image.read())}}"> <br>
             {% else %}
-                <img class="img-thumbnail" width = "100" src="/static/bdog.png">
+                <img class="img-thumbnail" width = "200" src="/static/plain_user.png">
             {% endif %} <br>
             {{ form.image() }}<br>
             {% for error in form.image.errors %}
@@ -41,6 +41,32 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+
+        <p>
+            {{ form.pronouns.label }}<br>
+            {{ form.pronouns() }}<br>
+            {% for error in form.pronouns.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        
+        <!-- don't display editing watchlist -->
+        <!-- <p>
+            {{ form.watchlist.label }}<br>
+            {{ form.watchlist() }}<br>
+            {% for error in form.watchlist.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        
+               <p>
+            {{ form.moviesWatched.label }}<br>
+            {{ form.moviesWatched() }}<br>
+            {% for error in form.moviesWatched.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p> -->
+        
 
         <p>{{ form.submit() }}</p>
 
