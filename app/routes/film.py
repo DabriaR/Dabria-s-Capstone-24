@@ -1,10 +1,9 @@
-
 from app import app
 import mongoengine.errors
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
 from app.classes.data import Film, Comment
-from app.classes.forms import FilmForm, CommentForm
+from app.classes.forms import FilmForm, CommentForm, ProfileForm
 from flask_login import login_required
 import datetime as dt
 
@@ -34,10 +33,10 @@ def filmNew():
         if form.poster.data:
            newFilm.poster.put(form.poster.data, content_type = 'image/jpeg')
            newFilm.save()
-     
-           newFilm.save()
-   
+                newFilm.save()
+        
         return redirect(url_for('film',filmID=newFilm.id))
+        
 
  
     return render_template('filmform.html',form=form)
@@ -64,6 +63,24 @@ def filmList():
   
     return render_template('films.html',films=films)
 
+@app.route('/film/list/<userID>')
+@app.route('/films/<userID>')
+
+@login_required
+def filmlogged(userID):
+  
+    films = Film.objects(author=userID)
+  
+    return render_template('films.html',films=films)\
+
+@app.route('/myfilms')
+
+@login_required
+def myFilms(userID):
+  
+    films = Film.objects(author=current_user.id)
+  
+    return render_template('films.html',films=films)\
 
 @app.route('/film/edit/<filmID>', methods=['GET', 'POST'])
 @login_required

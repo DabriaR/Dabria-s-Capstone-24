@@ -52,10 +52,8 @@ def profileEdit():
     # then sends the user to the page with the edit profile form
     form.fname.data = current_user.fname
     form.lname.data = current_user.lname
-    form.pronouns.data = current_user.pronouns
-    form.bio.data = current_user.bio
-    form.moviesWatched.data = current_user.moviesWatched
-    form.watchlist.data = current_user.watchlist
+    form.role.data = current_user.role
+    form.age.data = current_user.age
     return render_template('profileform.html', form=form)
 
 

@@ -18,6 +18,9 @@ class ProfileForm(FlaskForm):
     moviesWatched = IntegerField('Movieswatched', validators=[DataRequired()])
     submit = SubmitField('Post')
     bio = TextAreaField('Bio', validators=[DataRequired()])
+    bio = StringField('Bio', validators=[DataRequired()])
+    
+
 class ConsentForm(FlaskForm):
     adult_fname = StringField('First Name',validators=[DataRequired()])
     adult_lname = StringField('Last Name',validators=[DataRequired()])

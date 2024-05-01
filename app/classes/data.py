@@ -13,15 +13,17 @@ from setuptools import SetuptoolsDeprecationWarning
 from app import app
 from flask import flash
 from flask_login import UserMixin
-from mongoengine import FileField, EmailField, StringField, IntField, ReferenceField, DateTimeField, BooleanField, FloatField, CASCADE
+from mongoengine import Document, FileField, EmailField, StringField, IntField, ReferenceField, DateTimeField, BooleanField, FloatField, ListField, CASCADE
 from flask_mongoengine import Document
 import datetime as dt
 import jwt
 from time import time
 from bson.objectid import ObjectId
 
+
+
 class User(UserMixin, Document):
-    createdate = DateTimeField(defaultdefault=dt.datetime.utcnow)
+    createdate = DateTimeField(default=dt.datetime.utcnow)
     gid = StringField(sparse=True, unique=True)
     gname = StringField()
     gprofile_pic = StringField()
@@ -43,6 +45,19 @@ class User(UserMixin, Document):
         'ordering': ['lname','fname']
     }
     
+class Film(Document):
+    author = ReferenceField('User',reverse_delete_rule=CASCADE) 
+    filmname = StringField()
+    director = StringField()
+    director_race = StringField()
+    genre = StringField()
+    release = IntField()
+    create_date = DateTimeField(default=dt.datetime.utcnow)
+    modify_date = DateTimeField()
+
+    meta = {
+        'ordering': ['-createdate']
+    }
 
 class Sleep(Document):
     sleeper = ReferenceField('User',reverse_delete_rule=CASCADE)
@@ -73,9 +88,9 @@ class Film(Document):
     author = ReferenceField('User',reverse_delete_rule=CASCADE) 
     filmname = StringField()
     director = StringField()
+    director_race = StringField()
     genre = StringField()
     release = IntField()
-    poster = FileField()
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
 
