@@ -33,7 +33,6 @@ def filmNew():
         if form.poster.data:
            newFilm.poster.put(form.poster.data, content_type = 'image/jpeg')
            newFilm.save()
-                newFilm.save()
         
         return redirect(url_for('film',filmID=newFilm.id))
         

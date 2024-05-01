@@ -37,7 +37,6 @@ class User(UserMixin, Document):
     adult_lname = StringField()
     adult_email = StringField()
     consent = BooleanField(default=False)
-    age = IntField()
     bio = StringField()
     watchlist = IntField()
     moviesWatched = IntField()

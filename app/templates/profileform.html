@@ -22,14 +22,6 @@
         </p>
 
         <p>
-            {{ form.bio.label }}<br>
-            {{ form.bio() }}<br>
-            {% for error in form.bio.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-
-        <p>
             {{ form.image.label }}<br>
             {% if current_user.image %}
                 <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(current_user.image.read())}}"> <br>
@@ -57,23 +49,6 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        
-        <!-- don't display editing watchlist
-        <p>
-            {{ form.watchlist.label }}<br>
-            {{ form.watchlist() }}<br>
-            {% for error in form.watchlist.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        
-               <p>
-            {{ form.moviesWatched.label }}<br>
-            {{ form.moviesWatched() }}<br>
-            {% for error in form.moviesWatched.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p> -->
         
 
         <p>{{ form.submit() }}</p>

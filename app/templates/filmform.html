@@ -11,11 +11,13 @@
             {{ form.hidden_tag() }}
             <p>
                 {{ form.poster.label }}<br>
+                <img class="img-thumbnail" width = "250" src="/static/la la land.jpg"> <br>
                 {{ form.poster() }}<br>
                 {% for error in form.poster.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
+
             
             <p>
                 {{ form.filmname.label }}<br>
@@ -41,7 +43,7 @@
         {% endfor %}
             </p>
             <p>
-                Release Date: {{form.release}}
+                Release Date (Year): {{form.release}}
                  <!--List the errors for this field-->
             {% for error in form.release.errors %}
             <span style="color: red;">[{{ error }}]</span>
