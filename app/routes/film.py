@@ -28,12 +28,14 @@ def filmNew():
             genre = form.genre.data,
             release = form.release.data,
             author = current_user.id,
-            
             modify_date = dt.datetime.utcnow
         )
         
-        newFilm.save()
-
+        if form.poster.data:
+           newFilm.poster.put(form.poster.data, content_type = 'image/jpeg')
+           newFilm.save()
+     
+           newFilm.save()
    
         return redirect(url_for('film',filmID=newFilm.id))
 
@@ -81,15 +83,17 @@ def filmEdit(filmID):
             director = form.director.data,
             genre = form.genre.data,
             release = form.release.data,
-            poster = form.poster.data,
             modify_date = dt.datetime.utcnow
         )
-        if form.poster.data:
-            if editFilm.poster:
-                editFilm.poster.delete()
-            editFilm.poster.put(form.poster.data, content_type = 'image/jpeg')
+
             # This saves all the updates
         editFilm.save()
+        if form.poster.data:
+           if editFilm.poster:
+               editFilm.poster.delete()
+           editFilm.poster.put(form.poster.data, content_type = 'image/jpeg')
+           # This saves all the updates
+           editFilm.save()
 
         return redirect(url_for('film',filmID=filmID))
 
@@ -98,7 +102,6 @@ def filmEdit(filmID):
     form.director.data = editFilm.director
     form.genre.data = editFilm.genre
     form.release.data = editFilm.release
-    form.poster.data = editFilm.poster
 
     return render_template('filmform.html',form=form)
 

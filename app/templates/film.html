@@ -20,17 +20,11 @@
 
     <h1 class="display-5">{{film.filmname}}</h1>
     <p class="fs-3 text-break">
-        {% if film.author.image %}
-            <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(film.author.image.read())}}">
+        {% if film.poster %}
+        <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(film.poster.read())}}">
         {% endif %}
-        <div class="row">
-            <div class="col-2">
-                {% if film.poster %}
-                    <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(film.poster.image.read())}}"> <br>
-                {% else %}
-                    <img class="img-thumbnail" width = "100" src="/static/bdog.png">
-                {% endif %} 
-            </div>
+        <br>
+
             {{film.director}} <br>
             {{film.genre}} <br>
             {{film.release}}

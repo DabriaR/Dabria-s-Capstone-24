@@ -7,20 +7,16 @@
         <h1>Add a New Film</h1>
 
 
-        <form method=post>
+        <form method=post enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <p>
                 {{ form.poster.label }}<br>
-                {% if current_user.poster %}
-                    <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(current_user.image.read())}}"> <br>
-                {% else %}
-                    <img class="img-thumbnail" width = "200" src="/static/la la land.jpg">
-                {% endif %} <br>
                 {{ form.poster() }}<br>
                 {% for error in form.poster.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
+            
             <p>
                 {{ form.filmname.label }}<br>
                 {{ form.filmname(size=64) }}<br>

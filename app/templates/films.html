@@ -4,9 +4,6 @@
 <body style="background-color: #696e8e;">
     
 
-<img src="/static/CloudsPNG.png" class="rounded float-end" width = "200" hieght= "200" alt="...">
-
-<img src="/static/CloudsPNG.png" class="rounded float-start" width = "200" hieght= "200" alt="...">    </div>
 
 
 {% if films %}
@@ -37,10 +34,9 @@
             </div>
             <div class="col">
                 {% if film.poster %}
-                    <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(film.image.read())}}"> <br>
-                    {% else %}
-                    <img class="img-thumbnail" width = "100" src="/static/bdog.png">
-                {% endif %} 
+                <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(film.poster.read())}}">
+                {% endif %}
+                  
             </div>
             <div class="col">
                 {% if loop.index == 1 %}
