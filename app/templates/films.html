@@ -21,10 +21,7 @@
                 {% if loop.index == 1 %}
                 <h3 class="display-5">Date</h3>
                 {% endif %}
-
-                <a href="/film/{{film.id}}">
                     {{moment(film.create_date).calendar()}}
-                </a>
             </div>
             <div class="col-2">
                 {% if loop.index == 1 %}
@@ -34,7 +31,9 @@
             </div>
             <div class="col">
                 {% if film.poster %}
+                <a href="/film/{{film.id}}">
                 <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(film.poster.read())}}">
+                </a>
                 {% endif %}
                   
             </div>
