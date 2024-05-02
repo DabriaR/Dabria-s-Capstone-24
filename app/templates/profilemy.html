@@ -26,28 +26,29 @@
         Pronouns: {{current_user.pronouns}}<br>
         {{current_user.bio}} <br>
         <br>
-        {{current_user.moviesWatched}} films <br>
         {{current_user.watchlist}} films to watch <br>
  
 
         <br>
         {{current_user.moviesLogged}} Movies Logged<br>
+
+        Films logged: {{filmCount}}
+
+        {% if films %}
         <div class="container text-center">
-            <div class="row">
-              <div class="col">
-                <div class="d-inline p-2 bg-dark text-white">image goes here</div>
-              </div>
-              <div class="col">
-                <div class="d-inline p-2 bg-dark text-white">image goes here</div>
-              </div>
-              <div class="col">
-                <div class="d-inline p-2 bg-dark text-white">image goes here</div>
-              </div>
-              <div class="col">
-                <div class="d-inline p-2 bg-dark text-white">image goes here</div>
-              </div>
+          <div class="row">
+          {% for film in films %}
+            <div class="col">
+                {% if film.poster %}
+                <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(film.poster.read())}}">
+                {% endif %}
             </div>
+          {% endfor %}
           </div>
+        </div>
+        {% else %}
+
+        {% endif %}
 
         <hr>
        

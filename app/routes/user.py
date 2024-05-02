@@ -1,7 +1,7 @@
 from app import app
 from flask_login.utils import login_required
 from flask import render_template, redirect, flash, url_for
-from app.classes.data import User
+from app.classes.data import User, Film
 from app.classes.forms import ProfileForm
 from flask_login import current_user
 
@@ -14,7 +14,9 @@ from flask_login import current_user
 # This is the function that is run when the route is triggered
 def myProfile():
     # This sends the user to their profile page which renders the 'profilemy.html' template
-    return render_template('profilemy.html')
+    films = Film.objects(author=current_user.id)
+
+    return render_template('profilemy.html', films=films, filmCount=len(films))
 
 # This is the route for editing a profile
 # the methods part is required if you are using a form 
