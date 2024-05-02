@@ -90,6 +90,7 @@ class Film(Document):
     director_race = StringField()
     genre = StringField()
     release = IntField()
+    poster=FileField()
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
 
