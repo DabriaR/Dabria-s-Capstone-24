@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="filmform.css">
+    <title>Star rating using pure CSS</title>
+  </head>
+ 
+  
 {% block body %}
 <body style="background-color: #696e8e;">
+
     
 <center>
         <h1>Add a New Film</h1>
@@ -50,8 +59,7 @@
         {% endfor %}
             </p>
                  
-
-            {{form.submit()}}
+           {{form.submit()}}
         </form>
     </center>
     </body>

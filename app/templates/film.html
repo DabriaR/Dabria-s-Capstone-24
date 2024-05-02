@@ -9,6 +9,21 @@
         modified {{moment(film.modifydate).calendar()}}
     {% endif %}
     <br>
+
+  
+    
+    
+    {% if film.poster %}
+        <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(film.poster.read())}}">
+    {% endif %}
+    <br>
+    <h1 class="display-1">{{film.filmname}}  </h1> 
+    <h3 class = "display-4" style="font-size: x-large;"> {{film.release}}</h3>
+    <br>
+    <h2 class = "display-4" style="font-size: 40px;">{{film.director}} </h2>
+    <h2 class = "display-4" style="font-size: 40px;"> {{film.genre}}</h2>
+    
+   
     {% if film.author == current_user %}
         <a data-toggle="tooltip" data-placement="top" title="Delete Film" href="/film/delete/{{film.id}}">
             <img width="40" class="bottom-image" src="/static/delete.png">
@@ -17,23 +32,6 @@
             <img width="40" class="bottom-image" src="/static/edit.png">
         </a>
     {% endif %}
-  
-    <h1 class="display-1">{{film.filmname}}  </h1> 
-    <h3 class = "display-4" style="font-size: x-large;"> {{film.release}}</h3>
-    
-    {% if film.poster %}
-        <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(film.poster.read())}}">
-    {% endif %}
-    <br>
-    <br>
-    <br>
-    <br>
-    <h2 class = "display-4" style="font-size: 40px;">{{film.director}} </h2>
-    <br>
-    <h2 class = "display-4" style="font-size: 40px;"> {{film.genre}}</h2>
-    
-   
-
 
     <a href="/film/new/{{film.id}}" class="btn btn-primary btn-sm" role="button">New Film</a>
 
