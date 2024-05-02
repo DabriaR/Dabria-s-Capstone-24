@@ -26,6 +26,8 @@ def filmNew():
             director = form.director.data,
             genre = form.genre.data,
             release = form.release.data,
+            review=form.review.data,
+            rating=form.rating.data,
             author = current_user.id,
             modify_date = dt.datetime.utcnow
         )
@@ -99,6 +101,8 @@ def filmEdit(filmID):
             director = form.director.data,
             genre = form.genre.data,
             release = form.release.data,
+            review=form.review.data,
+            rating=form.rating.data,
             modify_date = dt.datetime.utcnow
         )
 
@@ -118,6 +122,8 @@ def filmEdit(filmID):
     form.director.data = editFilm.director
     form.genre.data = editFilm.genre
     form.release.data = editFilm.release
+    form.review.data=editFilm.review
+    form.rating.data=editFilm.rating
 
     return render_template('filmform.html',form=form)
 

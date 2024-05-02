@@ -6,7 +6,7 @@ from flask_wtf import FlaskForm
 import mongoengine.errors
 from wtforms.validators import URL, Email, DataRequired, NumberRange
 from wtforms.fields.html5 import URLField, DateField, IntegerRangeField, EmailField
-from wtforms import StringField, SubmitField, TextAreaField, IntegerField, SelectField, FileField, RadioField
+from wtforms import StringField, SubmitField, TextAreaField, IntegerField, SelectField, FileField, RadioField, HiddenField
 from wtforms_components import TimeField
 
 class ProfileForm(FlaskForm):
@@ -47,6 +47,8 @@ class FilmForm(FlaskForm):
     genre = SelectField('Genre',choices=[("Comedy","Comedy"),("Action","Action"),("Drama","Drama"),("Horror","Horror")])
     release = IntegerField("Release Date", validators=[NumberRange(min=1900,max=2024)])
     poster = FileField("Poster") 
+    review=TextAreaField("Leave a Review")
+    rating=HiddenField("Rating",validators=[DataRequired()] )
     submit = SubmitField('Submit')
 
 class CommentForm(FlaskForm):

@@ -58,9 +58,49 @@
             <span style="color: red;">[{{ error }}]</span>
         {% endfor %}
             </p>
-                 
+            <p>
+                Review: {{form.review}}
+                 <!--List the errors for this field-->
+            {% for error in form.review.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+            </p>
+               <p>
+
+                Rating: {{form.rating}}
+                <div class="rating-wrapper">
+                    <img id="1" src="/static/starrating.png" width="50">
+                    <img id="2" src="/static/starrating.png" width="50">
+                        <img id="3" src="/static/starrating.png" width="50">
+                        <img id="4" src="/static/starrating.png" width="50">
+                        <img id="5" src="/static/starrating.png" width="50">
+                   </div>
+                   {{form.rating}}
+                <!--List the errors for this field-->
+           {% for error in form.rating.errors %}
+           <span style="color: red;">[{{ error }}]</span>
+       {% endfor %}
+           </p>
+               </p>  
            {{form.submit()}}
         </form>
+
+         <script>
+            document.querySelector('.rating-wrapper').addEventListener('click', updateStarRating, false);
+            function updateStarRating(evt){
+                for(i=0; i < parseInt(evt.target.id); i++){
+                    const stars = document.querySelectorAll('.rating-wrapper img');
+                    for(s=0; s < 5; s++){
+                        stars[s].classList.remove('rating-checked');
+                    }
+                    for(j=0; j < parseInt(evt.target.id); j++){
+                        stars[j].classList.add('rating-checked');
+                    }
+                }
+                document.querySelector('#rating').value = evt.target.id;
+            }
+
+         </script>
     </center>
     </body>
 {% endblock %}

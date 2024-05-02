@@ -62,6 +62,18 @@
                 {% endif %}
                 {{film.release}}
             </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h3 class="display-5">Review</h3>
+                {% endif %}
+                {{film.review}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h3 class="display-5">Rating</h3>
+                {% endif %}
+                {{film.rating}}
+            </div>
         </div>
     </body>
     {% endfor %}

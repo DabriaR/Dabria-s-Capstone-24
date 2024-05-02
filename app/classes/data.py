@@ -91,6 +91,8 @@ class Film(Document):
     genre = StringField()
     release = IntField()
     poster=FileField()
+    review=StringField()
+    rating=IntField()
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
 
