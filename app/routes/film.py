@@ -16,7 +16,6 @@ def filmNew():
    
     form = FilmForm()
 
-   
     if form.validate_on_submit():
 
        
@@ -37,7 +36,6 @@ def filmNew():
            newFilm.save()
         
         return redirect(url_for('film',filmID=newFilm.id))
-        
 
  
     return render_template('filmform.html',form=form)

@@ -28,6 +28,12 @@
                 <h3 class="display-5">User</h3>
                 {% endif %}
                 {{film.author.fname}} {{film.author.lname}}
+                <!-- image -->
+                {% if current_user.image %}
+                <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(current_user.image.read())}}"> <br>
+            {% else %}
+                <img class="img-thumbnail" height = "50px" src="/static/plain_user.png">
+            {% endif %} 
             </div>
             <div class="col">
                 {% if film.poster %}
