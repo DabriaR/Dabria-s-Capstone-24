@@ -14,10 +14,10 @@ class ProfileForm(FlaskForm):
     lname = StringField('Last Name', validators=[DataRequired()]) 
     image = FileField("Image") 
     pronouns = StringField(validators=[DataRequired()]) 
-    watchlist = IntegerField('Watchlist', validators=[DataRequired()])
-    moviesWatched = IntegerField('Movieswatched', validators=[DataRequired()])
-    submit = SubmitField('Post')
     bio = TextAreaField('Bio', validators=[DataRequired()])
+    submit = SubmitField('Post')
+ 
+
 class ConsentForm(FlaskForm):
     adult_fname = StringField('First Name',validators=[DataRequired()])
     adult_lname = StringField('Last Name',validators=[DataRequired()])

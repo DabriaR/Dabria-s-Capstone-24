@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<body style="background-color: #696e8e;">
+    
+
+<img src="/static/CloudsPNG.png" class="rounded float-end" width = "200" hieght= "200" alt="...">
+
+<img src="/static/CloudsPNG.png" class="rounded float-start" width = "200" hieght= "200" alt="...">    </div>
+<div class="row">
+    <div class="col-4">
+        <h1 class="display-1">Add a new film</h1>
+    </div>
+    <div class="col">
+        <a href="/film/new" class="btn btn-primary btn-sm mt-5" role="button">New Film</a>
+    </div>
+</div>
+
+{% if films %}
+    {% for film in films %}
+        <div class="row border-bottom">
+            <div clas="col">
+                <a data-toggle="tooltip" data-placement="top" title="Delete Film" href="/film/delete/{{film.id}}">
+                    <img width="20" class="bottom-image" src="/static/delete.png">
+                </a>
+                <a data-toggle="tooltip" data-placement="top" title="Edit Film" href="/film/edit/{{film.id}}">
+                    <img width="20" class="bottom-image" src="/static/edit.png">
+                </a>
+        </div>
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                <h3 class="display-5">Date</h3>
+                {% endif %}
+
+                <a href="/film/{{film.id}}">
+                    {{moment(film.create_date).calendar()}}
+                </a>
+            </div>
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                <h3 class="display-5">User</h3>
+                {% endif %}
+                {{film.author.fname}} {{film.author.lname}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h3 class="display-5">Film Name</h3>
+                {% endif %}
+                {{film.filmname}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h3 class="display-5">Director</h3>
+                {% endif %}
+                {{film.director}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h3 class="display-5">Director Race</h3>
+                {% endif %}
+                {{film.director_race}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h3 class="display-5">Genre</h3>
+                {% endif %}
+                {{film.genre}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h3 class="display-5">Release Date</h3>
+                {% endif %}
+                {{film.release}}
+            </div>
+        </div>
+    </body>
+    {% endfor %}
+{% else %}
+
+{% endif %}
+
+{% endblock %}
