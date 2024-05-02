@@ -51,7 +51,7 @@ def film(filmID):
     
     thisFilm = Film.objects.get(id=filmID)
     
-    return render_template('film.html',Film=thisFilm)
+    return render_template('film.html',film=thisFilm)
 
 
 @app.route('/film/list')
