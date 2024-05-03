@@ -72,6 +72,19 @@
                     <h3 class="display-5">Rating</h3>
                 {% endif %}
                 {{film.rating}}
+                <div class="rating-wrapper" id="rating-{{film.id}}">
+                    <img src="/static/starrating.png" width="20">
+                    <img src="/static/starrating.png" width="20">
+                    <img src="/static/starrating.png" width="20">
+                    <img src="/static/starrating.png" width="20">
+                    <img src="/static/starrating.png" width="20">
+                </div>
+                <script>
+                    const stars{{film.id}} = document.querySelectorAll('#rating-{{film.id}} img');
+                    for(j=0; j < parseInt({{film.rating}}); j++){
+                        stars{{film.id}}[j].classList.add('rating-checked');
+                    }
+                </script>
             </div>
         </div>
     </body>
