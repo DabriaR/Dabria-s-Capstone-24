@@ -42,13 +42,13 @@
                 {% if loop.index == 1 %}
                     <h3 class="display-5">Film Name</h3>
                 {% endif %}
-                {{film.filmname}}
+                {{film.filmname}} released: {{film.release}}
             </div>
             <div class="col">
                 {% if loop.index == 1 %}
                     <h3 class="display-5">Director</h3>
                 {% endif %}
-                {{film.director}}
+                {{film.director}} 
             </div>
             <div class="col">
                 {% if loop.index == 1 %}
@@ -56,12 +56,7 @@
                 {% endif %}
                 {{film.genre}}
             </div>
-            <div class="col">
-                {% if loop.index == 1 %}
-                    <h3 class="display-5">Release Date</h3>
-                {% endif %}
-                {{film.release}}
-            </div>
+          
             <div class="col">
                 {% if loop.index == 1 %}
                     <h3 class="display-5">Review</h3>
