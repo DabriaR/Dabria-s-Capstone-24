@@ -35,9 +35,32 @@
         </a>
     {% endif %}
 
-    <a href="/film/new/{{film.id}}" class="btn btn-primary btn-sm" role="button">New Film</a>
 
 </div>
+
+    <a href="/reply/new/{{film.id}}" class="btn btn-primary btn-sm" ><img width="30" src="/static/reply icon.png"></a>
+
+    {% if replies %}
+    <h1 class="display-5">Replies</h1>
+    {% for reply in replies %}
+        {% if current_user == reply.author %}
+            <a href="/reply/delete/{{reply.id}}"><img width="20" src="/static/delete.png"></a> 
+            <a href="/reply/edit/{{reply.id}}"><img width="20" src="/static/edit.png"></a>
+        {% endif %}
+        {{moment(reply.create_date).calendar()}} by {{reply.author.fname}} {{reply.author.lname}} 
+
+        {% if reply.modifydate %}
+            modified {{moment(reply.modifydate).calendar()}}
+        {% endif %}
+        <br>
+        <p class="fs-3">
+            {{reply.content}}
+        </p>
+    {% endfor %}
+    {% else %}
+        <h1 class="display-5">No Replies</h1>
+    {% endif %}
+    
 {% else %}
 
 {% endif %}

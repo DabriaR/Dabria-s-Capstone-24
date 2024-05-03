@@ -55,6 +55,11 @@ class CommentForm(FlaskForm):
     content = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Comment')
 
+class ReplyForm(FlaskForm):
+    
+    content = TextAreaField('Reply', validators=[DataRequired()])
+    submit = SubmitField('Reply')
+
 class ClinicForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     streetAddress = StringField('Address', validators=[DataRequired()])

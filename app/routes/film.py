@@ -2,8 +2,8 @@ from app import app
 import mongoengine.errors
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
-from app.classes.data import Film, Comment
-from app.classes.forms import FilmForm, CommentForm, ProfileForm
+from app.classes.data import Film, Comment, Reply
+from app.classes.forms import FilmForm, CommentForm, ProfileForm, ReplyForm
 from flask_login import login_required
 import datetime as dt
 
@@ -49,7 +49,9 @@ def film(filmID):
     
     thisFilm = Film.objects.get(id=filmID)
     
-    return render_template('film.html',film=thisFilm)
+    theseReplies = Reply.objects(film=thisFilm)
+
+    return render_template('film.html',film=thisFilm,replies=theseReplies)
 
 
 @app.route('/film/list')
@@ -145,3 +147,46 @@ def filmDelete(filmID):
     films = Film.objects()  
     
     return render_template('films.html',films=films)
+
+@app.route('/reply/new/<filmID>', methods=['GET', 'POST'])
+@login_required
+def replyNew(filmID):
+    film = Film.objects.get(id=filmID)
+    form = ReplyForm()
+    if form.validate_on_submit():
+        newReply = Reply(
+            author = current_user.id,
+            film = filmID,
+            content = form.content.data
+        )
+        newReply.save()
+        return redirect(url_for('film',filmID=filmID))
+    return render_template('replyform.html',form=form,film=film)
+
+@app.route('/reply/edit/<replyID>', methods=['GET', 'POST'])
+@login_required
+def replyEdit(replyID):
+    editReply = Reply.objects.get(id=replyID)
+    if current_user != editReply.author:
+        flash("You can't edit a reply you didn't write.")
+        return redirect(url_for('film',filmID=editReply.film.id))
+    film = Film.objects.get(id=editReply.film.id)
+    form = ReplyForm()
+    if form.validate_on_submit():
+        editReply.update(
+            content = form.content.data,
+            modifydate = dt.datetime.utcnow
+        )
+        return redirect(url_for('film',filmID=editReply.film.id))
+
+    form.content.data = editReply.content
+
+    return render_template('replyform.html',form=form,film=film)  
+
+@app.route('/reply/delete/<replyID>')
+@login_required
+def replyDelete(replyID): 
+    deleteReply = Reply.objects.get(id=replyID)
+    deleteReply.delete()
+    flash('The reply was deleted.')
+    return redirect(url_for('film',filmID=deleteReply.film.id)) 
