@@ -1,19 +1,10 @@
-@media screen and (min-width:576px){
-    .carousel-inner{
-        display: flex;
-    }
-
-    .carousel-item{
-        display: block;
-        margin-right: 0;
-        flex: 0 0 calc(100%/3);
-    }
+.wrapper{
+    max-height: 200px;
+    border:1px solid; 
 }
 
-.carousel-inner{
-    padding:1em;
-}
-
-.card{
-    margin:0 .5em;
+.wrapper .item{
+    width: 110px;
+    height: 110px;
+    line-height: 110px;
 }
