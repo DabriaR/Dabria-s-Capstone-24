@@ -16,32 +16,28 @@
                     <img width="20" class="bottom-image" src="/static/edit.png">
                 </a>
         </div>
-            <div class="col-2">
-                {% if loop.index == 1 %}
-                <h3 class="display-5">Date</h3>
-                {% endif %}
-                    {{moment(film.create_date).calendar()}}
-            </div>
-            <div class="col-2">
-                {% if loop.index == 1 %}
-                <h3 class="display-5">User</h3>
-                {% endif %}
-                {{film.author.fname}} {{film.author.lname}}
-                <!-- image -->
-                {% if current_user.image %}
-                <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(current_user.image.read())}}"> <br>
-            {% else %}
-                <img class="img-thumbnail" height = "50px" src="/static/plain_user.png">
-            {% endif %} 
-            </div>
             <div class="col">
                 {% if film.poster %}
                 <a href="/film/{{film.id}}">
                 <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(film.poster.read())}}">
                 </a>
                 {% endif %}
-                  
+                
             </div>
+
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                <h3 class="display-5">User</h3>
+                {% endif %}
+                {{film.author.fname}} {{film.author.lname}}
+                <!-- image -->
+                {% if film.author.image %}
+                <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(current_user.image.read())}}"> <br>
+            {% else %}
+                <img class="img-thumbnail" height = "50px" src="/static/plain_user.png">
+            {% endif %} 
+            </div>
+
             <div class="col">
                 {% if loop.index == 1 %}
                     <h3 class="display-5">Film Name</h3>
