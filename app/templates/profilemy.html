@@ -30,17 +30,19 @@
  
 
         <br>
-        {{current_user.moviesLogged}} Movies Logged<br>
 
-        Films logged: {{filmCount}}
+        
+        {{filmCount}} films logged
 
         {% if films %}
-        <div class="container text-center">
+        <div class="container text-center">    
           <div class="row">
           {% for film in films %}
             <div class="col">
                 {% if film.poster %}
+                <a href="/film/{{film.id}}">
                 <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(film.poster.read())}}">
+                </a>
                 {% endif %}
             </div>
           {% endfor %}

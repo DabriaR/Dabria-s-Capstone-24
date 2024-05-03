@@ -39,7 +39,6 @@ class User(UserMixin, Document):
     consent = BooleanField(default=False)
     bio = StringField()
     watchlist = IntField()
-    moviesWatched = IntField()
     meta = {
         'ordering': ['lname','fname']
     }
