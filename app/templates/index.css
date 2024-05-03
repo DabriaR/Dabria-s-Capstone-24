@@ -1,10 +1,7 @@
-.wrapper{
-    max-height: 200px;
-    border:1px solid; 
+.col {
+    display: inline-block;
 }
 
-.wrapper .item{
-    width: 110px;
-    height: 110px;
-    line-height: 110px;
+.img{
+    height: 50px;
 }

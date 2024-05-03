@@ -98,6 +98,7 @@ class Film(Document):
     meta = {
         'ordering': ['-createdate']
     }
+
 class Reply(Document):
     # Line 63 is a way to access all the information in Course and Teacher w/o storing it in this class
     author = ReferenceField('User',reverse_delete_rule=CASCADE) 
@@ -112,7 +113,6 @@ class Reply(Document):
     meta = {
         'ordering': ['-createdate']
     }
-
 
 class Comment(Document):
     # Line 63 is a way to access all the information in Course and Teacher w/o storing it in this class

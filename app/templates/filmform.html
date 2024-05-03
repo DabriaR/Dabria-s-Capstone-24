@@ -28,7 +28,7 @@
             </p>
 
             <p>
-                {{ form.filmname.label }}<br>
+                {{ form.filmname.label }}: <br>
                 {{ form.filmname(size=64) }}<br>
                   <!--List the errors for this field-->
             {% for error in form.filmname.errors %}

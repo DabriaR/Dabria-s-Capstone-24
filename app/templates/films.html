@@ -32,8 +32,10 @@
                 {{film.author.fname}} {{film.author.lname}}
                 <!-- image -->
                 {% if film.author.image %}
+                <a href="/film/{{film.author}}">
                 <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(film.author.image.read())}}"> <br>
-            {% else %}
+                </a>
+                {% else %}
                 <img class="img-thumbnail" height = "50px" src="/static/plain_user.png">
             {% endif %} 
             </div>
@@ -67,7 +69,6 @@
                 {% if loop.index == 1 %}
                     <h3 class="display-5">Rating</h3>
                 {% endif %}
-                {{film.rating}}
                 <div class="rating-wrapper" id="rating-{{film.id}}">
                     <img src="/static/starrating.png" width="20">
                     <img src="/static/starrating.png" width="20">
