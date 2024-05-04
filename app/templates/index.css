@@ -2,6 +2,8 @@
     display: inline-block;
 }
 
-.img{
-    height: 50px;
-}
+.card-img-custom {
+    width: 100%;
+    height: auto;
+  }
+  
