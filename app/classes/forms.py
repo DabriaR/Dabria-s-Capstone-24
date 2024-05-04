@@ -44,7 +44,7 @@ class BlogForm(FlaskForm):
 class FilmForm(FlaskForm):
     filmname = StringField('Film Name', validators=[DataRequired()])
     director = StringField('Director', validators=[DataRequired()])
-    genre = SelectField('Genre',choices=[("Comedy","Comedy"),("Action","Action"),("Drama","Drama"),("Horror","Horror")])
+    genre = SelectField('Genre',choices=[("Comedy","Comedy"),("Action","Action"),("Drama","Drama"),("Horror","Horror"),("Romance","Romance"),("Musical","Musical")])
     release = IntegerField("Release Date", validators=[NumberRange(min=1900,max=2024)])
     poster = FileField("Poster") 
     review=TextAreaField("Leave a Review")

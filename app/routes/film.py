@@ -2,6 +2,7 @@ from app import app
 import mongoengine.errors
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
+from bson import ObjectId  
 from app.classes.data import Film, Comment, Reply
 from app.classes.forms import FilmForm, CommentForm, ProfileForm, ReplyForm
 from flask_login import login_required
@@ -46,13 +47,16 @@ def filmNew():
 
 @login_required
 def film(filmID):
+    try:
+        film_object_id = ObjectId(filmID)
+        thisFilm = Film.objects.get(id=film_object_id)
     
-    thisFilm = Film.objects.get(id=filmID)
-    
-    theseReplies = Reply.objects(film=thisFilm)
+        theseReplies = Reply.objects(film=thisFilm)
 
-    return render_template('film.html',film=thisFilm,replies=theseReplies)
-
+        return render_template('film.html',film=thisFilm,replies=theseReplies)
+    except Exception as e:
+        print(f"Error: {e}")
+        return render_template('error.html', message="Invalid film ID")
 
 @app.route('/film/list')
 @app.route('/films')
@@ -61,8 +65,10 @@ def film(filmID):
 def filmList():
   
     films = Film.objects()
-  
-    return render_template('films.html',films=films)
+    if films is None:
+        return render_template('no_films.html')
+    else:
+        return render_template('films.html',films=films)
 
 @app.route('/film/list/<userID>')
 @app.route('/films/<userID>')

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+
 {% block body %}
 <div class="container m-5">
 
@@ -22,7 +23,11 @@
     <br>
     <h2 class = "display-4" style="font-size: 40px;"> Director: {{film.director}} </h2>
     <h2 class = "display-4" style="font-size: 40px;"> Genre: {{film.genre}}</h2>
-    <h2> {{film.rating}} </h2>
+    <h2 class= "rating-wrapper"> 
+        {% for _ in range(film.rating) %}
+            <span class="fa fa-star"></span>
+        {% endfor %}
+    </h2>   
     <blockquote class="display-4"> {{film.review}} </blockquote>
     
    
@@ -38,7 +43,7 @@
 
 </div>
 
-    <a href="/reply/new/{{film.id}}" class="btn btn-primary btn-sm" ></style><img width="30" src="/static/reply icon.png"></a>
+    <a href="/reply/new/{{film.id}}" ><img width="40" class="bottom-image" src="/static/reply icon.png"> </a>
 
     {% if replies %}
     <h1 class="display-5">Replies</h1>
