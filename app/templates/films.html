@@ -10,16 +10,16 @@
         <div class="row border-bottom" style="color:#9a8c98 ; font-family: Playfair Display SC; font-size: 20px;">
             <div clas="col">
                 <a data-toggle="tooltip" data-placement="top" title="Delete Film" href="/film/delete/{{film.id}}">
-                    <img width="20" class="bottom-image" src="/static/delete.png">
+                    <img width="30" class="bottom-image" src="/static/delete.png">
                 </a>
                 <a data-toggle="tooltip" data-placement="top" title="Edit Film" href="/film/edit/{{film.id}}">
-                    <img width="20" class="bottom-image" src="/static/edit.png">
+                    <img width="30" class="bottom-image" src="/static/edit.png">
                 </a>
         </div>
             <div class="col">
                 {% if film.poster %}
                 <a href="/film/{{film.id}}">
-                <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(film.poster.read())}}">
+                <img width="200" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(film.poster.read())}}">
                 </a>
                 {% endif %}
                 
@@ -32,8 +32,9 @@
                 {{film.author.fname}} {{film.author.lname}}
                 <!-- image -->
                 {% if film.author.image %}
-                <a href="/film/{{film.author}}">
-                <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(film.author.image.read())}}"> <br>
+                <a href="/myprofile/{{film.author}}">
+                    <br>
+                <img width="90" class="img-thumbnail ifloat-start me-2" src="data:image;base64,{{base64encode(film.author.image.read())}}"> <br>
                 </a>
                 {% else %}
                 <img class="img-thumbnail" height = "50px" src="/static/plain_user.png">

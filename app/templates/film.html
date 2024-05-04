@@ -23,11 +23,13 @@
     <br>
     <h2 class = "display-4" style="font-size: 40px;"> Director: {{film.director}} </h2>
     <h2 class = "display-4" style="font-size: 40px;"> Genre: {{film.genre}}</h2>
-    <h2 class= "rating-wrapper"> 
-        {% for _ in range(film.rating) %}
-            <span class="fa fa-star"></span>
-        {% endfor %}
-    </h2>   
+    <div class="rating-wrapper" id="rating-{{film.id}}">
+        <img src="/static/starrating.png" width="33">
+        <img src="/static/starrating.png" width="33">
+        <img src="/static/starrating.png" width="33">
+        <img src="/static/starrating.png" width="33">
+        <img src="/static/starrating.png" width="33">
+    </div>
     <blockquote class="display-4"> {{film.review}} </blockquote>
     
    
@@ -39,9 +41,15 @@
             <img width="40" class="bottom-image" src="/static/edit.png">
         </a>
     {% endif %}
-
+    <script>
+        const stars{{film.id}} = document.querySelectorAll('#rating-{{film.id}} img');
+        for(j=0; j < parseInt({{film.rating}}); j++){
+        stars{{film.id}}[j].classList.add('rating-checked');
+        }
+    </script>
 
 </div>
+
 
     <a href="/reply/new/{{film.id}}" ><img width="40" class="bottom-image" src="/static/reply icon.png"> </a>
 
