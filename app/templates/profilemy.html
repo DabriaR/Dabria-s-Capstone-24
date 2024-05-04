@@ -3,13 +3,13 @@
 {% block body %}
 
 <body style="background-color: #696e8e;">
-<h1 class="display-1">
+<h1 class="display-1"  style="color:#9a8c98 ; font-family: Tangerine; font-size: 110px;">
     My Profile
     <a href="/myprofile/edit">
         <img width="40" src="/static/edit.png">
     </a>
 </h1>
-<div class="row">
+<div class="row" style="color:#9a8c98">
     <div class="col-2">
         {% if current_user.image %}
             <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(current_user.image.read())}}"> <br>

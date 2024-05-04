@@ -7,7 +7,7 @@
 
 {% if films %}
     {% for film in films %}
-        <div class="row border-bottom">
+        <div class="row border-bottom" style="color:#9a8c98 ; font-family: Playfair Display SC; font-size: 20px;">
             <div clas="col">
                 <a data-toggle="tooltip" data-placement="top" title="Delete Film" href="/film/delete/{{film.id}}">
                     <img width="20" class="bottom-image" src="/static/delete.png">
@@ -44,7 +44,7 @@
                 {% if loop.index == 1 %}
                     <h3 class="display-5">Film Name</h3>
                 {% endif %}
-                {{film.filmname}} released: {{film.release}}
+                {{film.filmname}} (released: {{film.release}})
             </div>
             <div class="col">
                 {% if loop.index == 1 %}
@@ -76,12 +76,12 @@
                     <img src="/static/starrating.png" width="20">
                     <img src="/static/starrating.png" width="20">
                 </div>
-                <script>
-                    const stars{{film.id}} = document.querySelectorAll('#rating-{{film.id}} img');
-                    for(j=0; j < parseInt({{film.rating}}); j++){
-                        stars{{film.id}}[j].classList.add('rating-checked');
-                    }
-                </script>
+    <script>
+            const stars{{film.id}} = document.querySelectorAll('#rating-{{film.id}} img');
+            for(j=0; j < parseInt({{film.rating}}); j++){
+            stars{{film.id}}[j].classList.add('rating-checked');
+            }
+        </script>
             </div>
         </div>
     </body>
