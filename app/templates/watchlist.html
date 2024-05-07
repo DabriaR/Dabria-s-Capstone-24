@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<body style="background-color: #696e8e;">
+    
+{% if watchlist_films %}
+    <div class="container">
+        <div class="row">
+            {% for film in watchlist_films %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="data:image;base64,{{ base64encode(film.poster.read()) }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ film.filmname }}</h5>
+                        <p class="card-text">Director: {{ film.director }}</p>
+                        <p class="card-text">Genre: {{ film.genre }}</p>
+                        <form action="{{ url_for('remove_from_watchlist', film_id=film.id) }}" method="post">
+                            <button type="submit" class="btn btn-danger">Remove from Watchlist</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% else %}
+    <p>No films in your watchlist.</p>
+{% endif %}
+
+</body>
+{% endblock %}

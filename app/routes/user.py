@@ -58,6 +58,34 @@ def profileEdit():
     
     return render_template('profileform.html', form=form)
 
+@app.route('/addToWatchlist/<filmID>', methods=['POST'])
+@login_required
+def add_to_watchlist(filmID):
+    film = Film.objects.get(id=filmID)
+    if film not in current_user.watchlist:
+            # Add the film to the user's watchlist
+            current_user.watchlist.append(film)
+            current_user.save()
+            flash("Film added to watchlist successfully.")
+    else:
+            flash("Film is already in your watchlist.")
 
+    return redirect(url_for('watchlist'))
 
+@app.route('/watchlist')
+@login_required
+def watchlist():
+    # Fetch the films in the current user's watchlist
+    watchlist_films = current_user.watchlist
+    return render_template('watchlist.html', watchlist_films=watchlist_films)
+
+@app.route('/removeFromWatchlist/<film_id>', methods=['POST'])
+@login_required
+def remove_from_watchlist(film_id):
+    film = Film.objects.get(id=film_id)
+
+    current_user.watchlist.remove(film)
+    current_user.save()
+
+    return redirect(url_for('watchlist'))
 

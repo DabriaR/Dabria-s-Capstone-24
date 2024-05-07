@@ -2,95 +2,80 @@
 
 {% block body %}
 <body style="background-color: #696e8e;">
-    
-
 
 {% if films %}
-    {% for film in films %}
-        <div class="row border-bottom" style="color:#9a8c98 ; font-family: Playfair Display SC; font-size: 20px;">
-            <div clas="col">
-                <a data-toggle="tooltip" data-placement="top" title="Delete Film" href="/film/delete/{{film.id}}">
+    <div class="container">
+        {% for film in films %}
+        <div class="row border-bottom" style="color:#9a8c98; font-family: Playfair Display SC; font-size: 20px;">
+            <div class="col">
+                <a data-toggle="tooltip" data-placement="top" title="Delete Film" href="/film/delete/{{ film.id }}">
                     <img width="30" class="bottom-image" src="/static/delete.png">
                 </a>
-                <a data-toggle="tooltip" data-placement="top" title="Edit Film" href="/film/edit/{{film.id}}">
+                <a data-toggle="tooltip" data-placement="top" title="Edit Film" href="/film/edit/{{ film.id }}">
                     <img width="30" class="bottom-image" src="/static/edit.png">
                 </a>
-        </div>
+                {% if current_user.is_authenticated %}
+                <form action="/addToWatchlist/{{ film.id }}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-link" style="padding: 0;">
+                        <img width="30" class="bottom-image" src="/static/add icon.png" alt="Add to Watchlist">
+                    </button>
+                </form>
+                {% endif %}
+            </div>
             <div class="col">
                 {% if film.poster %}
-                <a href="/film/{{film.id}}">
-                <img width="200" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(film.poster.read())}}">
+                <a href="/film/{{ film.id }}">
+                    <img width="200" class="img-thumbnail float-start me-2" src="data:image;base64,{{ base64encode(film.poster.read()) }}">
                 </a>
                 {% endif %}
-                
             </div>
-
-            <div class="col-2">
-                {% if loop.index == 1 %}
+            <div class="col">
                 <h3 class="display-5">User</h3>
-                {% endif %}
-                {{film.author.fname}} {{film.author.lname}}
-                <!-- image -->
+                {{ film.author.fname }} {{ film.author.lname }}
                 {% if film.author.image %}
-                <a href="/myprofile/{{film.author}}">
-                    <br>
-                <img width="90" class="img-thumbnail ifloat-start me-2" src="data:image;base64,{{base64encode(film.author.image.read())}}"> <br>
-                </a>
+                <img width="90" class="img-thumbnail float-start me-2" src="data:image;base64,{{ base64encode(film.author.image.read()) }}">
                 {% else %}
-                <img class="img-thumbnail" height = "50px" src="/static/plain_user.png">
-            {% endif %} 
-            </div>
-
-            <div class="col">
-                {% if loop.index == 1 %}
-                    <h3 class="display-5">Film Name</h3>
+                <img class="img-thumbnail" height="50px" src="/static/plain_user.png">
                 {% endif %}
-                {{film.filmname}} (released: {{film.release}})
             </div>
             <div class="col">
-                {% if loop.index == 1 %}
-                    <h3 class="display-5">Director</h3>
-                {% endif %}
-                {{film.director}} 
+                <h3 class="display-5">Film</h3>
+                {{ film.filmname }} (released: {{ film.release }})
             </div>
             <div class="col">
-                {% if loop.index == 1 %}
-                    <h3 class="display-5">Genre</h3>
-                {% endif %}
-                {{film.genre}}
-            </div>
-          
-            <div class="col">
-                {% if loop.index == 1 %}
-                    <h3 class="display-5">Review</h3>
-                {% endif %}
-                {{film.review}}
+                <h3 class="display-5">Director</h3>
+                {{ film.director }}
             </div>
             <div class="col">
-                {% if loop.index == 1 %}
-                    <h3 class="display-5">Rating</h3>
-                {% endif %}
-                <div class="rating-wrapper" id="rating-{{film.id}}">
+                <h3 class="display-5">Genre</h3>
+                {{ film.genre }}
+            </div>
+            <div class="col">
+                <h3 class="display-5">Review</h3>
+                {{ film.review }}
+            </div>
+            <div class="col">
+                <h3 class="display-5">Rating</h3>
+                <div class="rating-wrapper" id="rating-{{ film.id }}">
                     <img src="/static/starrating.png" width="20">
                     <img src="/static/starrating.png" width="20">
                     <img src="/static/starrating.png" width="20">
                     <img src="/static/starrating.png" width="20">
                     <img src="/static/starrating.png" width="20">
                 </div>
-    <script>
-            const stars{{film.id}} = document.querySelectorAll('#rating-{{film.id}} img');
-            for(j=0; j < parseInt({{film.rating}}); j++){
-            stars{{film.id}}[j].classList.add('rating-checked');
-            }
-        </script>
+                <script>
+                    const stars{{ film.id }} = document.querySelectorAll('#rating-{{ film.id }} img');
+                    for (j=0; j < parseInt({{ film.rating }}); j++) {
+                        stars{{ film.id }}[j].classList.add('rating-checked');
+                    }
+                </script>
             </div>
         </div>
-    </body>
-    {% endfor %}
-   
-
+        {% endfor %}
+    </div>
 {% else %}
-
+    <p>No films available.</p>
 {% endif %}
 
+</body>
 {% endblock %}

@@ -9,7 +9,7 @@
         <img width="40" src="/static/edit.png">
     </a>
 </h1>
-<div class="row" style="color:#9a8c98">
+<div class="row" style="color:#9a8c98; font-family: Playfair Display SC;">
     <div class="col-2">
         {% if current_user.image %}
             <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(current_user.image.read())}}"> <br>
@@ -25,9 +25,10 @@
         {% endif %}
         Pronouns: {{current_user.pronouns}}<br>
         {{current_user.bio}} <br>
+        <form action="/watchlist" method="get">
+            <button type="submit" class="btn btn-purple" style="background-color: purple;">View Watchlist</button> <!-- Button added here -->
+        </form>        
         <br>
-        {{current_user.watchlist}} films to watch <br>
- 
 
         <br>
 

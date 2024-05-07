@@ -38,7 +38,7 @@ class User(UserMixin, Document):
     adult_email = StringField()
     consent = BooleanField(default=False)
     bio = StringField()
-    watchlist = IntField()
+    watchlist = ListField(ReferenceField('Film'))
     meta = {
         'ordering': ['lname','fname']
     }
